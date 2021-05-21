@@ -2,6 +2,6 @@
 
 int main(int argc, char **argv)
 {
-    printf("Hello world\n");
+    validate_input();
     return (0);
 }
