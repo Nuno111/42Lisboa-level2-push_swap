@@ -2,7 +2,7 @@ NAME = push_swap
 
 CC = gcc
 
-ERR_FLAGS = -Wall -Wextra -Werror
+ERR_FLAGS = -Wall -Wextra #-Werror
 
 DEBUG_FLAGS = -g -fsanitize=address
 
@@ -20,10 +20,10 @@ libft:
 	cd libft && ${MAKE}
 
 push_swap: ${LIB} ${SRC}
-	${CC} ${ERR_FLAGS} ${DEBUG_FLAGS} ${DEP_FLAGS} ${LIBFT} ${SRC}
+	${CC} ${ERR_FLAGS} ${DEBUG_FLAGS} ${DEP_FLAGS} ${LIBFT} ${SRC} -o $@
 
 clean:
-	rm -rf push_swap
+	rm -rf push_swap *.dSYM
 
 fclean: clean
 	cd libft && ${MAKE} fclean
