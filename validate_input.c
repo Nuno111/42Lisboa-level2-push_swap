@@ -20,3 +20,8 @@ bool    is_int(char **argv)
     }
     return (true);
 }
+
+bool    has_duplicate(char **argv)
+{
+    
+}

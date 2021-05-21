@@ -10,7 +10,7 @@ int main(int argc, char **argv)
 {
     if (argc == 1)
         return (0);
-    if (!is_int(argv)) //|| has_duplicates(argv))
+    if (!is_int(argv)) || has_duplicates(argv))
         err_exit();
     return (0);
 }
