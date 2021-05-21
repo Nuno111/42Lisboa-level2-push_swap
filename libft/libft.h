@@ -6,7 +6,7 @@
 /*   By: ngregori <ngregori@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:51:15 by ngregori          #+#    #+#             */
-/*   Updated: 2021/05/21 15:41:42 by ngregori         ###   ########.fr       */
+/*   Updated: 2021/05/21 17:27:00 by ngregori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int						ft_isalpha(int c);
 int						ft_isalnum(int c);
 int						ft_isspace(int c);
 int						ft_lstsize(t_list *lst);
-int						ft_atoi(const char *nptr);
+long					ft_atoi(const char *nptr);
 int						ft_strncmp(char *s1, char *s2, size_t n);
 int						ft_strcmp(char *s1, char *s2);
 int						ft_memcmp(const void *s1, const void *s2, size_t n);

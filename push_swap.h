@@ -1,4 +1,5 @@
 #include <stdio.h>
 #include "libft.h"
+#include <limits.h>
 
-void    validate_input();
+bool    is_int(char **argv);

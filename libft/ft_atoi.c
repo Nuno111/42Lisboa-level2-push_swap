@@ -6,7 +6,7 @@
 /*   By: ngregori <ngregori@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 14:15:06 by ngregori          #+#    #+#             */
-/*   Updated: 2021/05/19 20:11:42 by ngregori         ###   ########.fr       */
+/*   Updated: 2021/05/21 17:20:01 by ngregori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ static	int	isspace(int c)
 	}
 }
 
-static	int	ft_convert(const char *nbr, int sign)
+static	long	ft_convert(const char *nbr, int sign)
 {
 	int			i;
-	long long	result;
+	long		result;
 
 	result = 0;
 	i = 0;
@@ -37,13 +37,13 @@ static	int	ft_convert(const char *nbr, int sign)
 		result = result * 10 + nbr[i] - '0';
 		i++;
 	}
-	return ((int)(result * sign));
+	return (result * sign);
 }
 
-int	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
-	int	result;
-	int	i;
+	long	result;
+	int		i;
 
 	i = 0;
 	while (isspace(nptr[i]))

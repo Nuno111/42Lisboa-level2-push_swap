@@ -1,7 +1,22 @@
 #include "push_swap.h"
 
-void    validate_input()
+bool    is_int(char **argv)
 {
-    ft_isdigit(1);
-    printf("Hi");
+    int     i;
+    long    num;
+    
+    i = 0;
+    while (argv[++i])
+    {
+        if (ft_str_is_numeric(argv[i]))
+        {
+            num = ft_atoi(argv[i]);
+            printf("%ld\n", num);
+            if (num < INT_MIN || num > INT_MAX)
+                return (false);
+        }
+        else
+            return (false);
+    }
+    return (true);
 }
