@@ -6,30 +6,28 @@ ERR_FLAGS = -Wall -Wextra -Werror
 
 DEBUG_FLAGS = -g -fsanitize=address
 
-DEP_FLAGS = -I. -I/libft
+DEP_FLAGS = -I. -Ilibft
 
 LIBFT = libft/libft.a
 
-SRC = $(wildcard ./*.c)
+LIB = push_swap.h
 
-all : libft push_swap
+SRC = ${wildcard *.c}
 
-libft :
-	cd libft && {MAKE}
+all: libft push_swap
 
-push_swap : $(NAME)
+libft:
+	cd libft && ${MAKE}
 
-$(NAME) : *.c push_swap.h 
-	$(CC) $(ERR_FLAGS) $(DEBUG_FLAGS) *.c $(LIBFT) $(DEP_FLAGS) -o $(NAME)
+push_swap: ${LIB} ${SRC}
+	${CC} ${ERR_FLAGS} ${DEBUG_FLAGS} ${DEP_FLAGS} ${LIBFT} ${SRC}
 
-clean :
-	rm -f $(DST0) $(DST1) $(DST2)
+clean:
+	rm -rf push_swap
 
-fclean : clean
-	rm -rf $(NAME) $(CUB3DLIB) $(MACNAME) *.dSYM
-	cd libs/libft && make fclean
-	cd libs/macopengl && make clean
+fclean: clean
+	cd libft && ${MAKE} fclean
 
-re : fclean all
+re: fclean all
 
-.PHONY : all clean fclean re
+.PHONY: all clean fclean re libft
