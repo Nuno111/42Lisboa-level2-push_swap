@@ -10,7 +10,9 @@ int main(int argc, char **argv)
 {
     if (argc == 1)
         return (0);
-    if (!is_int(argv)) || has_duplicates(argv))
+    if (!is_int(argv))
         err_exit();
+	fill_list(argv);
+	//sort_stack();
     return (0);
 }

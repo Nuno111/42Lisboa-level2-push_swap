@@ -4,3 +4,7 @@ check if previous == current
 fill stack a with unsorted numbers
 
 code instructions
+
+
+if not duplicate
+	add to stack at the back.
