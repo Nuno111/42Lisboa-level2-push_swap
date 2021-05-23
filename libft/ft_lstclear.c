@@ -6,7 +6,7 @@
 /*   By: ngregori <ngregori@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 00:03:40 by ngregori          #+#    #+#             */
-/*   Updated: 2021/05/19 20:02:57 by ngregori         ###   ########.fr       */
+/*   Updated: 2021/05/23 12:44:04 by ngregori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
 	t_list	*tmp;
 
-	if (*lst && del)
+	if (*lst)
 	{
 		while (*lst != NULL)
 		{
 			tmp = *lst;
 			*lst = (*lst)->next;
-			del(tmp->content);
+			if (del)
+				del(tmp->content);
+			else
+				tmp->content = NULL;
 			free(tmp);
 		}
 		lst = NULL;

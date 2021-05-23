@@ -20,7 +20,7 @@ libft:
 	cd libft && ${MAKE}
 
 push_swap: ${LIB} ${SRC}
-	${CC} ${ERR_FLAGS} ${DEBUG_FLAGS} ${DEP_FLAGS} ${LIBFT} ${SRC} -o $@
+	${CC} ${ERR_FLAGS} ${DEBUG_FLAGS} ${DEP_FLAGS} ${SRC} ${LIBFT} -o $@
 
 clean:
 	rm -rf push_swap *.dSYM

@@ -1,9 +1,20 @@
 #include "push_swap.h"
 
-bool    validate_input(char **argv, t_list *stack_a)
+static	bool    is_duplicate(int num, t_list *stack_a)
+{
+	while (stack_a)
+	{
+		if (num == *(int *)stack_a->content)
+			return (true);
+		stack_a = stack_a->next;
+	}
+	return (false);
+}
+
+bool    validate_input(char **argv, t_list **stack_a)
 {
     int     i;
-    long    num;
+    long    *num;
 	t_list	*new;
 
     i = 0;
@@ -11,10 +22,13 @@ bool    validate_input(char **argv, t_list *stack_a)
     {
         if (ft_str_is_numeric(argv[i]))
         {
-            num = ft_atoi(argv[i]);
-            if ((num < INT_MIN || num > INT_MAX) || is_duplicate(num, stack_a))
+			num = malloc(sizeof(long));
+			if (!num)
+				return (false);
+            *num = ft_atoi(argv[i]);
+            if ((*num < INT_MIN || *num > INT_MAX) || is_duplicate(*num, *stack_a))
                 return (false);
-			new = ft_lstnew(num);
+			new = ft_lstnew((int *)num);
 			ft_lstadd_back(stack_a, new);
         }
         else
@@ -23,13 +37,3 @@ bool    validate_input(char **argv, t_list *stack_a)
     return (true);
 }
 
-bool    is_duplicate(int num, t_list *stack_a)
-{
-	while (stack_a)
-	{
-		if (num == *(int *)stack_a->content)
-			return (false);
-		stack_a = stack_a->next;
-	}
-	return (true);
-}

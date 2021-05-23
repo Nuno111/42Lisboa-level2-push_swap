@@ -2,4 +2,4 @@
 #include "libft.h"
 #include <limits.h>
 
-bool    is_int(char **argv);
+bool    validate_input(char **argv, t_list **stack_a);
