@@ -1,24 +1,10 @@
 #include "push_swap.h"
 
-void	fill_list(char **argv)
-{
-	int i;
-	t_list *new_node;
-
-	i = 1;
-	while (argv[i])
-	{
-		if (is_duplicate(argv[i]))
-			return (false);
-		ft_lstadd_back(stack_a, )
-		i++;
-	}
-
-}
-bool    is_int(char **argv)
+bool    validate_input(char **argv, t_list *stack_a)
 {
     int     i;
     long    num;
+	t_list	*new;
 
     i = 0;
     while (argv[++i])
@@ -26,9 +12,10 @@ bool    is_int(char **argv)
         if (ft_str_is_numeric(argv[i]))
         {
             num = ft_atoi(argv[i]);
-            printf("%ld\n", num);
-            if (num < INT_MIN || num > INT_MAX)
+            if ((num < INT_MIN || num > INT_MAX) || is_duplicate(num, stack_a))
                 return (false);
+			new = ft_lstnew(num);
+			ft_lstadd_back(stack_a, new);
         }
         else
             return (false);
@@ -36,7 +23,13 @@ bool    is_int(char **argv)
     return (true);
 }
 
-bool    has_duplicate(char **argv)
+bool    is_duplicate(int num, t_list *stack_a)
 {
-
+	while (stack_a)
+	{
+		if (num == *(int *)stack_a->content)
+			return (false);
+		stack_a = stack_a->next;
+	}
+	return (true);
 }
