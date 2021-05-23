@@ -18,8 +18,8 @@ int main(int argc, char **argv)
         return (0);
     if (!validate_input(argv, &stack_a))
 		err_exit(&stack_a);
+	//sort_stack(stack_a);
 	if (stack_a)
 		ft_lstclear(&stack_a, free);
-	//sort_stack(stack_a);
     return (0);
 }
