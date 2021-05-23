@@ -1,6 +1,15 @@
 #include "push_swap.h"
 
-static  void    err_exit(t_list **stack_a)
+static	int	exit_succ(t_list **stack_a, t_list **stack_b)
+{
+	if (stack_a)
+		ft_lstclear(&stack_a, free);
+	if (stack_b)
+		ft_lstclear(&stack_b, free);
+	return (0);
+}
+
+static  void    exit_err(t_list **stack_a)
 {
 	ft_lstclear(stack_a, free);
     printf("Error\n");
@@ -17,9 +26,7 @@ int main(int argc, char **argv)
     if (argc == 1)
         return (0);
     if (!validate_input(argv, &stack_a))
-		err_exit(&stack_a);
+		exit_err(&stack_a);
 	//sort_stack(stack_a);
-	if (stack_a)
-		ft_lstclear(&stack_a, free);
-    return (0);
+    return (exit_succ(stack_a, stack_b));
 }
