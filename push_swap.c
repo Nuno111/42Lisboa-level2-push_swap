@@ -23,6 +23,6 @@ int main(int argc, char **argv)
     if (!validate_input(argv, &stack_a))
 		exit_all(&stack_a, &stack_b, true);
 	if (!stack_sorted(stack_a))
-		sort_stack(&stack_a, &stack_b, argc);
+		sort_stack(&stack_a, &stack_b, argc - 1);
     return (exit_succ(stack_a, stack_b, false));
 }
