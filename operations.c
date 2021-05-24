@@ -18,7 +18,7 @@ void	push_stack(t_list **stack_rem, t_list **stack_add, char *msg)
 
 	if (!(*stack_rem))
 		return ;
-	new_node = ft_lstnew(*(int *)(*stack_rem)->content);
+	new_node = ft_lstnew((int *)(*stack_rem)->content);
 	ft_lstadd_front(stack_add, new_node);
 	node_to_free = *stack_rem;
 	stack_rem = &(node_to_free)->next;
@@ -45,9 +45,11 @@ void	rrotate_stack(t_list **stack, char *msg)
 	t_list	*node_to_rotate;
 	t_list	*new_last_node;
 
+	new_last_node = *stack;
+	while (new_last_node->next->next)
+		new_last_node = new_last_node->next;
 	node_to_rotate = ft_lstlast(*stack);
 	ft_lstadd_front(stack, node_to_rotate);
-	new_last_node = ft_lstlast;
 	new_last_node->next = NULL;
 	if (msg)
 		printf("%s\n",msg);

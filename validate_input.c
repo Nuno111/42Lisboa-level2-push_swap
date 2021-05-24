@@ -27,7 +27,10 @@ bool    validate_input(char **argv, t_list **stack_a)
 				return (false);
             *num = ft_atoi(argv[i]);
             if ((*num < INT_MIN || *num > INT_MAX) || is_duplicate(*num, *stack_a))
+			{
+				free(num);
                 return (false);
+			}
 			new = ft_lstnew((int *)num);
 			ft_lstadd_back(stack_a, new);
         }

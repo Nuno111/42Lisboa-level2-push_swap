@@ -7,8 +7,8 @@ int		highest_nbr(t_list *stack)
 	max = 0;
 	while(stack)
 	{
-		if (stack->content > max)
-			max = stack->content;
+		if (*(int *)stack->content > max)
+			max = *(int *)stack->content;
 		stack = stack->next;
 	}
 	return (max);
@@ -16,7 +16,6 @@ int		highest_nbr(t_list *stack)
 
 void    solve_small(t_list **stack, int argc)
 {
-	t_list	*mid;
 	int		max;
 
     if (argc == 2)
@@ -27,9 +26,9 @@ void    solve_small(t_list **stack, int argc)
 	max = highest_nbr(*stack);
 	while (!stack_sorted(*stack))
 	{
-		if (max == (*stack)->next->next->content)
+		if (max == *(int *)(*stack)->next->next->content)
 			swap_stack(stack, "sa");
 		else
-			rotate_stack(stack, "ra");
+			rrotate_stack(stack, "rra");
 	}
 }

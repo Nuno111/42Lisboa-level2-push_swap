@@ -3,12 +3,12 @@
 static	int	exit_all(t_list **stack_a, t_list **stack_b, bool err)
 {
 	if (stack_a)
-		ft_lstclear(&stack_a, free);
+		ft_lstclear(stack_a, free);
 	if (stack_b)
-		ft_lstclear(&stack_b, free);
+		ft_lstclear(stack_b, free);
 	if (err)
 		printf("Error\n");
-	return (0);
+	exit (0);
 }
 
 int main(int argc, char **argv)
@@ -24,5 +24,5 @@ int main(int argc, char **argv)
 		exit_all(&stack_a, &stack_b, true);
 	if (!stack_sorted(stack_a))
 		sort_stack(&stack_a, &stack_b, argc - 1);
-    return (exit_succ(stack_a, stack_b, false));
+    return (exit_all(&stack_a, &stack_b, false));
 }
