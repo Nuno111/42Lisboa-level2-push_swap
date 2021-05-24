@@ -11,6 +11,7 @@ static	bool    is_duplicate(int num, t_list *stack_a)
 	return (false);
 }
 
+//
 bool    validate_input(char **argv, t_list **stack_a)
 {
     int     i;
