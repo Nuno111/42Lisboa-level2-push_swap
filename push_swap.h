@@ -10,3 +10,4 @@ void	rrotate_stack(t_list **stack, char *msg);
 void	swap_stacks(t_list **stack_a, t_list **stack_b);
 void	rrotate_stacks(t_list **stack_a, t_list **stack_b);
 void	rotate_stacks(t_list **stack_a, t_list **stack_b);
+bool	stack_sorted(t_list *stack_a);
