@@ -1,19 +1,5 @@
 #include "push_swap.h"
 
-int		highest_nbr(t_list *stack)
-{
-	int max;
-
-	max = 0;
-	while(stack)
-	{
-		if (*(int *)stack->content > max)
-			max = *(int *)stack->content;
-		stack = stack->next;
-	}
-	return (max);
-}
-
 void    solve_small(t_list **stack, int argc)
 {
 	int		max;
@@ -30,5 +16,23 @@ void    solve_small(t_list **stack, int argc)
 			swap_stack(stack, "sa");
 		else
 			rrotate_stack(stack, "rra");
+	}
+}
+
+void	solve_medium(t_list **stack_a, t_list **stack_b)
+{
+	int median;
+
+	median = get_median(stack_a);
+	while (!stack_sorted && *stack_b != NULL)
+	{
+		if (stack_sorted)
+		{
+			push_stack(stack_b, stack_a, "pa");
+
+		}
+		if (*(int *)(*stack_a)->content < median)
+			push_stack(stack_a, stack_b, "pb");
+
 	}
 }
