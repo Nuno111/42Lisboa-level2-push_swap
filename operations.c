@@ -23,6 +23,7 @@ void	push_stack(t_list **stack_rem, t_list **stack_add, char *msg)
 	node_to_free = *stack_rem;
 	stack_rem = &(node_to_free)->next;
 	free(node_to_free);
+	node_to_free = NULL;
 	if (msg)
 		printf("%s\n", msg);
 }

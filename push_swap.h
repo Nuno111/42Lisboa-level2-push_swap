@@ -12,4 +12,7 @@ void	rrotate_stacks(t_list **stack_a, t_list **stack_b);
 void	rotate_stacks(t_list **stack_a, t_list **stack_b);
 bool	stack_sorted(t_list *stack_a);
 void    solve_small(t_list **stack, int argc);
+void	solve_medium(t_list **stack_a, t_list **stack_b);
 void    sort_stack(t_list **stack_a, t_list **stack_b, int argc);
+float	get_median(t_list *stack);
+int		highest_nbr(t_list *stack);
