@@ -19,7 +19,7 @@ void    sort_stack(t_list **stack_a, t_list **stack_b, int argc)
 		solve_medium(stack_a, stack_b);
 }
 
-static	void	tmp_sort(char *arr, t_list *stack, int size)
+static	void	tmp_sort(int **arr, t_list *stack, int size)
 {
 	int		i;
 	bool	sorted;
@@ -28,7 +28,7 @@ static	void	tmp_sort(char *arr, t_list *stack, int size)
 	i = 0;
 	while (stack)
 	{
-		arr[i] = *(int *)stack->content;
+		(*arr)[i] = *(int *)stack->content;
 		i++;
 		stack = stack->next;
 	}
@@ -39,11 +39,11 @@ static	void	tmp_sort(char *arr, t_list *stack, int size)
 		sorted = true;
 		while (i < size - 1)
 		{
-			if (arr[i] > arr[i + 1])
+			if ((*arr)[i] > (*arr)[i + 1])
 			{
-				tmp = arr[i];
-				arr[i] = arr[i+1];
-				arr[i + 1] = tmp;
+				tmp = (*arr)[i];
+				(*arr)[i] = (*arr)[i + 1];
+				(*arr)[i + 1] = tmp;
 				sorted = false;
 			}
 			i++;
@@ -54,12 +54,12 @@ static	void	tmp_sort(char *arr, t_list *stack, int size)
 float	get_median(t_list *stack)
 {
 	float		median;
-	char		*arr;
+	int			*arr;
 	int			stack_size;
 
 	stack_size = ft_lstsize(stack);
-	arr = malloc(sizeof(int) * (stack_size - 1));
-	tmp_sort(arr, stack, stack_size);
+	arr = malloc(sizeof(int) * (stack_size));
+	tmp_sort(&arr, stack, stack_size);
 	if (stack_size % 2 == 0)
 		median = (arr[1] + arr[2]) / 2;
 	else
@@ -68,11 +68,11 @@ float	get_median(t_list *stack)
 	return (median);
 }
 
-int	highest_nbr(t_list *stack)
+int	get_highest(t_list *stack)
 {
 	int max;
 
-	max = 0;
+	max = INT_MIN;
 	while(stack)
 	{
 		if (*(int *)stack->content > max)
@@ -80,4 +80,18 @@ int	highest_nbr(t_list *stack)
 		stack = stack->next;
 	}
 	return (max);
+}
+
+int	get_smallest(t_list *stack)
+{
+	int min;
+
+	min = INT_MAX;
+	while(stack)
+	{
+		if (*(int *)stack->content < min)
+			min = *(int *)stack->content;
+		stack = stack->next;
+	}
+	return (min);
 }

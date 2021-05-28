@@ -9,7 +9,7 @@ void    solve_small(t_list **stack)
         swap_stack(stack, "sa");
 		return ;
 	}
-	max = highest_nbr(*stack);
+	max = get_highest(*stack);
 	while (!stack_sorted(*stack))
 	{
 		if (max == *(int *)(*stack)->next->next->content)
@@ -23,7 +23,7 @@ void    solve_small(t_list **stack)
 
 void	solve_medium(t_list **stack_a, t_list **stack_b)
 {
-	float median;
+	float	median;
 
 	median = get_median(*stack_a);
 	while (!stack_sorted(*stack_a))

@@ -15,4 +15,5 @@ void    solve_small(t_list **stack);
 void	solve_medium(t_list **stack_a, t_list **stack_b);
 void    sort_stack(t_list **stack_a, t_list **stack_b, int argc);
 float	get_median(t_list *stack);
-int		highest_nbr(t_list *stack);
+int		get_highest(t_list *stack);
+int     get_smallest(t_list *stack);
