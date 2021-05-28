@@ -46,5 +46,7 @@ void	solve_medium(t_list **stack_a, t_list **stack_b)
 			swap_stack(stack_b, "sb");
 		else
 			push_stack(stack_b, stack_a, "pa");
+		if (!stack_sorted(*stack_a))
+			swap_stack(stack_a, "sa");
 	}
 }
