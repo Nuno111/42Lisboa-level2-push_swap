@@ -1,10 +1,10 @@
 #include "push_swap.h"
 
-void    solve_small(t_list **stack, int argc)
+void    solve_small(t_list **stack)
 {
 	int		max;
 
-    if (argc == 2)
+    if (ft_lstsize(*stack) == 2)
 	{
         swap_stack(stack, "sa");
 		return ;
@@ -14,6 +14,8 @@ void    solve_small(t_list **stack, int argc)
 	{
 		if (max == *(int *)(*stack)->next->next->content)
 			swap_stack(stack, "sa");
+		else if (max == *(int *)(*stack)->content)
+			rotate_stack(stack, "ra");
 		else
 			rrotate_stack(stack, "rra");
 	}
@@ -26,17 +28,17 @@ void	solve_medium(t_list **stack_a, t_list **stack_b)
 	median = get_median(*stack_a);
 	while (!stack_sorted(*stack_a))
 	{
-		if (*(float *)(*stack_a)->content < median)
+		if (*(int *)(*stack_a)->content < median)
 			push_stack(stack_a, stack_b, "pb");
-		else if (ft_lstsize(*stack_b) < 2)
+		else if (ft_lstsize(*stack_b) < 2 && ft_lstsize(*stack_a) > 3)
 		{
-			if (*(float *)(*stack_a)->next->content < median)
+			if (*(int *)(*stack_a)->next->content < median)
 				rotate_stack(stack_a, "ra");
 			else
 				rrotate_stack(stack_a, "rra");
 		}
 		else
-			solve_small(stack_a, 0);
+			solve_small(stack_a);
 	}
 	while (*stack_b)
 	{

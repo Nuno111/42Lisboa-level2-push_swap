@@ -14,48 +14,57 @@ bool	stack_sorted(t_list *stack_a)
 void    sort_stack(t_list **stack_a, t_list **stack_b, int argc)
 {
 	if (argc <= 3)
-		solve_small(stack_a, argc);
+		solve_small(stack_a);
 	else if (argc <= 5)
 		solve_medium(stack_a, stack_b);
 }
 
-static	t_list	list_sort(t_list stack)
+static	void	tmp_sort(char *arr, t_list *stack, int size)
 {
+	int		i;
 	bool	sorted;
-	t_list	tmp;
-	int		val;
+	int		tmp;
 
+	i = 0;
+	while (stack)
+	{
+		arr[i] = *(int *)stack->content;
+		i++;
+		stack = stack->next;
+	}
 	sorted = false;
 	while (!sorted)
 	{
-		tmp = stack;
+		i = 0;
 		sorted = true;
-		while (tmp.next)
+		while (i < size - 1)
 		{
-			if (*(int *)tmp.content > *(int *)tmp.next->content)
+			if (arr[i] > arr[i + 1])
 			{
-				val = *(int *)tmp.content;
-				*(int *)tmp.content = *(int *)tmp.next->content;
-				*(int *)tmp.next->content = val;
+				tmp = arr[i];
+				arr[i] = arr[i+1];
+				arr[i + 1] = tmp;
 				sorted = false;
 			}
-			tmp = *tmp.next;
+			i++;
 		}
 	}
-	return (stack);
 }
 
 float	get_median(t_list *stack)
 {
-	t_list		sorted;
 	float		median;
+	char		*arr;
+	int			stack_size;
 
-	sorted = list_sort(*stack);
-	if (ft_lstsize(&sorted) % 2 == 0)
-		median = (*(int *)sorted.next->next->content +
-		*(int *)sorted.next->content) / 2;
+	stack_size = ft_lstsize(stack);
+	arr = malloc(sizeof(int) * (stack_size - 1));
+	tmp_sort(arr, stack, stack_size);
+	if (stack_size % 2 == 0)
+		median = (arr[1] + arr[2]) / 2;
 	else
-		median = *(float *)sorted.next->next->content;
+		median = arr[2];
+	free(arr);
 	return (median);
 }
 
