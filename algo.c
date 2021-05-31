@@ -50,3 +50,8 @@ void	solve_medium(t_list **stack_a, t_list **stack_b)
 			swap_stack(stack_a, "sa");
 	}
 }
+
+void	solve_large(t_list **stack_a, t_list **stack_b)
+{
+	split_a(stack_a, stack_b, ft_lstsize(stack_a) / 2);
+}
