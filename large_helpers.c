@@ -26,7 +26,7 @@ void	push_to_b(t_list **stack_a, t_list **stack_b, int size)
 	{
 		if (*(int *)(*stack_a)->content < median)
 		{
-			push_stack(stack_a, stack_b, "pa");
+			push_stack(stack_a, stack_b, "pb");
 			size--;
 		}
 		else

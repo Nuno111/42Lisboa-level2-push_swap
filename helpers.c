@@ -26,7 +26,7 @@ static	void	tmp_sort(int **arr, t_list *stack, int size)
 	int		tmp;
 
 	i = 0;
-	while (stack)
+	while (i < size)
 	{
 		(*arr)[i] = *(int *)stack->content;
 		i++;
@@ -51,19 +51,17 @@ static	void	tmp_sort(int **arr, t_list *stack, int size)
 	}
 }
 
-float	get_median(t_list *stack)
+float	get_median(t_list *stack, int size)
 {
 	float		median;
 	int			*arr;
-	int			stack_size;
 
-	stack_size = ft_lstsize(stack);
-	arr = malloc(sizeof(int) * (stack_size));
-	tmp_sort(&arr, stack, stack_size);
-	if (stack_size % 2 == 0)
-		median = (arr[1] + arr[2]) / 2;
+	arr = malloc(sizeof(int) * (size));
+	tmp_sort(&arr, stack, size);
+	if (size % 2 == 0)
+		median = (arr[size / 2] + arr[size / 2 + 1]) / 2;
 	else
-		median = arr[2];
+		median = arr[size / 2];
 	free(arr);
 	return (median);
 }
