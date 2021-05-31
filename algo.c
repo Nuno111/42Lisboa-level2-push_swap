@@ -53,5 +53,8 @@ void	solve_medium(t_list **stack_a, t_list **stack_b)
 
 void	solve_large(t_list **stack_a, t_list **stack_b)
 {
-	split_a(stack_a, stack_b, ft_lstsize(stack_a) / 2);
+	int	*chunks;
+
+	chunks = NULL;
+	split_a(stack_a, stack_b, ft_lstsize(stack_a) / 2, chunks);
 }
