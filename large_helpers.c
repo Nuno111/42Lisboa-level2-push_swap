@@ -1,18 +1,36 @@
 #include "push_swap.h"
 
-void	split_a(t_list **stack_a, t_list **stack_b, int size, int *chunks)
+void	save_chunks_size(int *chunks, int size)
 {
-	if (size == 2)
+	int	*new_chunk;
+	int	*new_arr;
+	int	arr_size;
+
+	new_arr = NULL;
+	new_chunk = NULL;
+	if (chunks)
 	{
-		if (*(int *)(*stack_a)->content > *(int *)(*stack_a)->next->content)
-			swap_stack(stack_a, "sa");
-		return ;
+		arr_size = 0;
+		while (chunks[arr_size])
+			arr_size++;
+		new_arr = malloc(sizeof(int *) * (arr_size + 1));
+		if (!new_arr)
+			return ;
+		ft_memmove(new_arr, chunks, sizeof(int) * (arr_size - 1));
+		new_arr[arr_size - 2] = size;
+		new_arr[arr_size - 1] = -1;
+		free(chunks);
+		chunks = new_arr;
 	}
-	else if (size == 1)
-		return ;
-	push_to_b(stack_a, stack_a, size);
-	add_to_chunks(chunks, size);
-	split_a(stack_a, stack_b, size / 2, chunks);
+	else
+	{
+		new_chunk = malloc(sizeof(int *) * 2);
+		if (!new_chunk)
+			return ;
+		new_chunk[0] = size;
+		new_chunk[1] = -1;
+		chunks = new_chunk;
+	}
 }
 
 void	push_to_b(t_list **stack_a, t_list **stack_b, int size)
@@ -40,4 +58,19 @@ void	push_to_b(t_list **stack_a, t_list **stack_b, int size)
 		rrotate_stack(stack_a, "rra");
 		ra_count--;
 	}
+}
+
+void	split_a(t_list **stack_a, t_list **stack_b, int size, int *chunks)
+{
+	if (size == 2)
+	{
+		if (*(int *)(*stack_a)->content > *(int *)(*stack_a)->next->content)
+			swap_stack(stack_a, "sa");
+		return ;
+	}
+	else if (size == 1)
+		return ;
+	push_to_b(stack_a, stack_a, size);
+	save_chunks_size(chunks, size);
+	split_a(stack_a, stack_b, size / 2, chunks);
 }

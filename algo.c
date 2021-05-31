@@ -25,7 +25,7 @@ void	solve_medium(t_list **stack_a, t_list **stack_b)
 {
 	float	median;
 
-	median = get_median(*stack_a);
+	median = get_median(*stack_a, ft_lstsize(*stack_a));
 	while (!stack_sorted(*stack_a))
 	{
 		if (*(int *)(*stack_a)->content < median)
@@ -57,4 +57,6 @@ void	solve_large(t_list **stack_a, t_list **stack_b)
 
 	chunks = NULL;
 	split_a(stack_a, stack_b, ft_lstsize(stack_a) / 2, chunks);
+	if (chunks)
+		free(chunks);
 }
