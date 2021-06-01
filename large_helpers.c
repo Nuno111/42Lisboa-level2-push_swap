@@ -41,7 +41,8 @@ void	push_to_b(t_list **stack_a, t_list **stack_b, int size)
 
 	median = get_median(*stack_a, size);
 	ra_count = 0;
-	while (size > 0)
+	size /= 2;
+	while (size > 0 && !stack_sorted(*stack_a))
 	{
 		if (*(int *)(*stack_a)->content < median)
 		{
@@ -54,7 +55,7 @@ void	push_to_b(t_list **stack_a, t_list **stack_b, int size)
 			ra_count++;
 		}
 	}
-	while (ra_count > 0)
+	while (ra_count > 0 && !stack_sorted(*stack_a))
 	{
 		rrotate_stack(stack_a, "rra");
 		ra_count--;
@@ -63,18 +64,15 @@ void	push_to_b(t_list **stack_a, t_list **stack_b, int size)
 
 void	split_a(t_list **stack_a, t_list **stack_b, int size, int **chunks)
 {
-	int	stack_size;
-
-	stack_size = ft_lstsize(*stack_a);
-	if (stack_size == 2)
+	if (size == 2)
 	{
 		if (*(int *)(*stack_a)->content > *(int *)(*stack_a)->next->content)
 			swap_stack(stack_a, "sa");
 		return ;
 	}
-	else if (stack_size == 1)
+	else if (size == 1)
 		return ;
 	push_to_b(stack_a, stack_b, size);
 	save_chunks_size(chunks, size);
-	split_a(stack_a, stack_b, (stack_size - size) / 2, chunks);
+	split_a(stack_a, stack_b, size / 2, chunks);
 }

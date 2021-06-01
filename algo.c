@@ -56,7 +56,7 @@ void	solve_large(t_list **stack_a, t_list **stack_b)
 	int	*chunks;
 
 	chunks = NULL;
-	split_a(stack_a, stack_b, ft_lstsize(*stack_a) / 2, &chunks);
+	split_a(stack_a, stack_b, ft_lstsize(*stack_a), &chunks);
 	if (chunks)
 		free(chunks);
 }
