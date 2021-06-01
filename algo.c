@@ -10,7 +10,7 @@ void    solve_small(t_list **stack)
 		return ;
 	}
 	max = get_highest(*stack);
-	while (!stack_sorted(*stack))
+	while (!stack_sorted(*stack, ft_lstsize(*stack)))
 	{
 		if (max == *(int *)(*stack)->next->next->content)
 			swap_stack(stack, "sa");
@@ -26,7 +26,7 @@ void	solve_medium(t_list **stack_a, t_list **stack_b)
 	float	median;
 
 	median = get_median(*stack_a, ft_lstsize(*stack_a));
-	while (!stack_sorted(*stack_a))
+	while (!stack_sorted(*stack_a, ft_lstsize(*stack_a)))
 	{
 		if (*(int *)(*stack_a)->content < median)
 			push_stack(stack_a, stack_b, "pb");
@@ -42,11 +42,11 @@ void	solve_medium(t_list **stack_a, t_list **stack_b)
 	}
 	while (*stack_b)
 	{
-		if (stack_sorted(*stack_b) && (*stack_b)->next)
+		if (stack_sorted(*stack_b, ft_lstsize(*stack_b)) && (*stack_b)->next)
 			swap_stack(stack_b, "sb");
 		else
 			push_stack(stack_b, stack_a, "pa");
-		if (!stack_sorted(*stack_a))
+		if (!stack_sorted(*stack_a, ft_lstsize(*stack_a)))
 			swap_stack(stack_a, "sa");
 	}
 }
@@ -54,9 +54,20 @@ void	solve_medium(t_list **stack_a, t_list **stack_b)
 void	solve_large(t_list **stack_a, t_list **stack_b)
 {
 	int	*chunks;
+	int	i;
 
+	i = 0;
 	chunks = NULL;
-	split_a(stack_a, stack_b, ft_lstsize(*stack_a), &chunks);
+	split_a(stack_a, stack_b, &chunks);
 	if (chunks)
+	{
+		while (chunks[i] != -1)
+			i++;
+		while (i > 0)
+		{
+			handle_chunks(stack_a, stack_b, chunks[i - 1]);
+			i--;
+		}
 		free(chunks);
+	}
 }

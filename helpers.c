@@ -1,12 +1,13 @@
 #include "push_swap.h"
 
-bool	stack_sorted(t_list *stack_a)
+bool	stack_sorted(t_list *stack, int size)
 {
-	while(stack_a->next)
+	while(size > 1)
 	{
-		if (*(int *)stack_a->content > *(int *)stack_a->next->content)
+		if (*(int *)stack->content > *(int *)stack->next->content)
 			return (false);
-		stack_a = stack_a->next;
+		stack = stack->next;
+		size--;
 	}
 	return (true);
 }
@@ -61,7 +62,7 @@ float	get_median(t_list *stack, int size)
 	arr = malloc(sizeof(int) * (size));
 	tmp_sort(&arr, stack, size);
 	if (size % 2 == 0)
-		median = (arr[size / 2] + arr[size / 2 + 1]) / 2;
+		median = (arr[size / 2 - 1] + arr[size / 2]) / 2.0;
 	else
 		median = arr[size / 2];
 	free(arr);
