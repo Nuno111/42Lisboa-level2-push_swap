@@ -18,10 +18,14 @@ void	handle_chunks(t_list **stack_a, t_list **stack_b, int size)
 	push_to_a(stack_b, stack_a, size);
 	if (!stack_sorted(*stack_a, ft_lstsize(*stack_a)))
 		solve_large(stack_a, stack_b);
+	else if (*stack_b)
+		handle_chunks(stack_a, stack_b, ft_lstsize(*stack_b));
+	/*
 	if (*stack_b && stack_sorted(*stack_b, size / 2))
 		swap_stack(stack_b, "sb");
 	while (*stack_b)
 		push_stack(stack_b, stack_a, "pa");
+	*/
 }
 
 void	save_chunks_size(int **chunks, int size)
