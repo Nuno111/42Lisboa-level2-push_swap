@@ -51,14 +51,14 @@ void	solve_medium(t_list **stack_a, t_list **stack_b)
 	}
 }
 
-void	solve_large(t_list **stack_a, t_list **stack_b)
+void	solve_large(t_list **stack_a, t_list **stack_b, int size)
 {
 	int	*chunks;
 	int	i;
 
 	i = 0;
 	chunks = NULL;
-	split_a(stack_a, stack_b, &chunks);
+	split_a(stack_a, stack_b, &chunks, size);
 	if (chunks)
 	{
 		while (chunks[i] != -1)

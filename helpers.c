@@ -19,7 +19,7 @@ void    sort_stack(t_list **stack_a, t_list **stack_b, int argc)
 	else if (argc <= 5)
 		solve_medium(stack_a, stack_b);
 	else
-		solve_large(stack_a, stack_b);
+		solve_large(stack_a, stack_b, argc);
 }
 
 static	void	tmp_sort(int **arr, t_list *stack, int size)

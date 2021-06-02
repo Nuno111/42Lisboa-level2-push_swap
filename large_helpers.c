@@ -1,5 +1,12 @@
 #include "push_swap.h"
 
+int		par_or_impar(int size)
+{
+	if (size % 2 == 0)
+		return (size / 2);
+	return (size / 2 + 1);
+}
+
 void	handle_chunks(t_list **stack_a, t_list **stack_b, int size)
 {
 	if (size == 1)
@@ -17,15 +24,9 @@ void	handle_chunks(t_list **stack_a, t_list **stack_b, int size)
 	}
 	push_to_a(stack_b, stack_a, size);
 	if (!stack_sorted(*stack_a, ft_lstsize(*stack_a)))
-		solve_large(stack_a, stack_b);
-	else if (*stack_b)
-		handle_chunks(stack_a, stack_b, ft_lstsize(*stack_b));
-	/*
-	if (*stack_b && stack_sorted(*stack_b, size / 2))
-		swap_stack(stack_b, "sb");
-	while (*stack_b)
-		push_stack(stack_b, stack_a, "pa");
-	*/
+		solve_large(stack_a, stack_b, par_or_impar(size));
+	if (*stack_b)
+		handle_chunks(stack_a, stack_b, par_or_impar(size));
 }
 
 void	save_chunks_size(int **chunks, int size)
@@ -124,11 +125,8 @@ void	push_to_b(t_list **stack_a, t_list **stack_b, int size)
 	}
 }
 
-void	split_a(t_list **stack_a, t_list **stack_b, int **chunks)
+void	split_a(t_list **stack_a, t_list **stack_b, int **chunks, int size)
 {
-	int	size;
-
-	size = ft_lstsize(*stack_a);
 	if (size == 2)
 	{
 		if (*(int *)(*stack_a)->content > *(int *)(*stack_a)->next->content)
@@ -139,5 +137,5 @@ void	split_a(t_list **stack_a, t_list **stack_b, int **chunks)
 		return ;
 	push_to_b(stack_a, stack_b, size);
 	save_chunks_size(chunks, size / 2);
-	split_a(stack_a, stack_b, chunks);
+	split_a(stack_a, stack_b, chunks, par_or_impar(size));
 }

@@ -1,5 +1,5 @@
 #include "push_swap.h"
-
+/*
 static	void	print_stacks(t_list *stack_a, t_list *stack_b)
 {
 	if (stack_a)
@@ -22,9 +22,10 @@ static	void	print_stacks(t_list *stack_a, t_list *stack_b)
 		}
 	}
 }
+*/
 static	void	exit_all(t_list **stack_a, t_list **stack_b, bool err)
 {
-	print_stacks(*stack_a, *stack_b);
+	//print_stacks(*stack_a, *stack_b);
 	if (stack_a)
 		ft_lstclear(stack_a, free);
 	if (stack_b)
