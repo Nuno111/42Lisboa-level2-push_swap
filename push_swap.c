@@ -25,7 +25,6 @@ static	void	print_stacks(t_list *stack_a, t_list *stack_b)
 */
 static	void	exit_all(t_list **stack_a, t_list **stack_b, bool err)
 {
-	//print_stacks(*stack_a, *stack_b);
 	if (stack_a)
 		ft_lstclear(stack_a, free);
 	if (stack_b)
@@ -35,18 +34,18 @@ static	void	exit_all(t_list **stack_a, t_list **stack_b, bool err)
 	exit (0);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_list *stack_a;
-	t_list *stack_b;
+	t_list	*stack_a;
+	t_list	*stack_b;
 
 	stack_a = NULL;
 	stack_b = NULL;
-    if (argc == 1)
-        return (0);
-    if (!validate_input(argv, &stack_a))
+	if (argc == 1)
+		return (0);
+	if (!validate_input(argv, &stack_a))
 		exit_all(&stack_a, &stack_b, true);
 	if (!stack_sorted(stack_a, ft_lstsize(stack_a)))
 		sort_stack(&stack_a, &stack_b, argc - 1);
-    exit_all(&stack_a, &stack_b, false);
+	exit_all(&stack_a, &stack_b, false);
 }

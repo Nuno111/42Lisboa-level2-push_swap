@@ -1,6 +1,5 @@
 #include "push_swap.h"
 
-
 void	swap_stacks(t_list **stack_a, t_list **stack_b)
 {
 	swap_stack(stack_a, NULL);

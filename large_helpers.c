@@ -1,12 +1,5 @@
 #include "push_swap.h"
 
-int		par_or_impar(int size)
-{
-	if (size % 2 == 0)
-		return (size / 2);
-	return (size / 2 + 1);
-}
-
 void	handle_chunks(t_list **stack_a, t_list **stack_b, int size)
 {
 	if (size == 1)
@@ -29,46 +22,6 @@ void	handle_chunks(t_list **stack_a, t_list **stack_b, int size)
 		handle_chunks(stack_a, stack_b, par_or_impar(size));
 }
 
-void	save_chunks_size(int **chunks, int size)
-{
-	int	*new_chunk;
-	int	*new_arr;
-	int	arr_size;
-	int	i;
-
-	i = 0;
-	new_arr = NULL;
-	new_chunk = NULL;
-	if (*chunks)
-	{
-		arr_size = 0;
-		while (chunks[0][arr_size] != -1)
-			arr_size++;
-		arr_size += 2;
-		new_arr = malloc(sizeof(int) * arr_size);
-		if (!new_arr)
-			return ;
-		while (i + 2 != arr_size)
-		{
-			new_arr[i] = chunks[0][i];
-			i++;
-		}
-		new_arr[arr_size - 2] = size;
-		new_arr[arr_size - 1] = -1;
-		free(*chunks);
-		*chunks = new_arr;
-	}
-	else
-	{
-		new_chunk = malloc(sizeof(int) * 2);
-		if (!new_chunk)
-			return ;
-		new_chunk[0] = size;
-		new_chunk[1] = -1;
-		*chunks = new_chunk;
-	}
-}
-
 void	push_to_a(t_list **stack_b, t_list **stack_a, int size)
 {
 	float	median;
@@ -77,7 +30,7 @@ void	push_to_a(t_list **stack_b, t_list **stack_a, int size)
 	median = get_median(*stack_b, size);
 	ra_count = 0;
 	size /= 2;
-	while (size > 0)// && !stack_sorted(*stack_b, ft_lstsize(*stack_b)))
+	while (size > 0)
 	{
 		if (*(int *)(*stack_b)->content > median)
 		{
@@ -90,7 +43,7 @@ void	push_to_a(t_list **stack_b, t_list **stack_a, int size)
 			ra_count++;
 		}
 	}
-	while (ra_count > 0) //&& !stack_sorted(*stack_b, ft_lstsize(*stack_b)))
+	while (ra_count > 0)
 	{
 		rrotate_stack(stack_b, "rrb");
 		ra_count--;
@@ -105,7 +58,7 @@ void	push_to_b(t_list **stack_a, t_list **stack_b, int size)
 	median = get_median(*stack_a, size);
 	ra_count = 0;
 	size /= 2;
-	while (size > 0)// && !stack_sorted(*stack_a, ft_lstsize(*stack_a)))
+	while (size > 0)
 	{
 		if (*(int *)(*stack_a)->content < median)
 		{
@@ -118,7 +71,7 @@ void	push_to_b(t_list **stack_a, t_list **stack_b, int size)
 			ra_count++;
 		}
 	}
-	while (ra_count > 0)// && !stack_sorted(*stack_a, ft_lstsize(*stack_a)))
+	while (ra_count > 0)
 	{
 		rrotate_stack(stack_a, "rra");
 		ra_count--;

@@ -1,12 +1,12 @@
 #include "push_swap.h"
 
-void    solve_small(t_list **stack)
+void	solve_small(t_list **stack)
 {
 	int		max;
 
-    if (ft_lstsize(*stack) == 2)
+	if (ft_lstsize(*stack) == 2)
 	{
-        swap_stack(stack, "sa");
+		swap_stack(stack, "sa");
 		return ;
 	}
 	max = get_highest(*stack);
@@ -18,6 +18,19 @@ void    solve_small(t_list **stack)
 			rotate_stack(stack, "ra");
 		else
 			rrotate_stack(stack, "rra");
+	}
+}
+
+static	void	handle_b(t_list **stack_a, t_list **stack_b)
+{
+	while (*stack_b)
+	{
+		if (stack_sorted(*stack_b, ft_lstsize(*stack_b)) && (*stack_b)->next)
+			swap_stack(stack_b, "sb");
+		else
+			push_stack(stack_b, stack_a, "pa");
+		if (!stack_sorted(*stack_a, ft_lstsize(*stack_a)))
+			swap_stack(stack_a, "sa");
 	}
 }
 
@@ -40,15 +53,7 @@ void	solve_medium(t_list **stack_a, t_list **stack_b)
 		else
 			solve_small(stack_a);
 	}
-	while (*stack_b)
-	{
-		if (stack_sorted(*stack_b, ft_lstsize(*stack_b)) && (*stack_b)->next)
-			swap_stack(stack_b, "sb");
-		else
-			push_stack(stack_b, stack_a, "pa");
-		if (!stack_sorted(*stack_a, ft_lstsize(*stack_a)))
-			swap_stack(stack_a, "sa");
-	}
+	handle_b(stack_a, stack_b);
 }
 
 void	solve_large(t_list **stack_a, t_list **stack_b, int size)

@@ -1,32 +1,8 @@
 #include "push_swap.h"
 
-bool	stack_sorted(t_list *stack, int size)
+static	void	copy_to_array(int **arr, t_list *stack, int size)
 {
-	while(size > 1)
-	{
-		if (*(int *)stack->content > *(int *)stack->next->content)
-			return (false);
-		stack = stack->next;
-		size--;
-	}
-	return (true);
-}
-
-void    sort_stack(t_list **stack_a, t_list **stack_b, int argc)
-{
-	if (argc <= 3)
-		solve_small(stack_a);
-	else if (argc <= 5)
-		solve_medium(stack_a, stack_b);
-	else
-		solve_large(stack_a, stack_b, argc);
-}
-
-static	void	tmp_sort(int **arr, t_list *stack, int size)
-{
-	int		i;
-	bool	sorted;
-	int		tmp;
+	int	i;
 
 	i = 0;
 	while (i < size)
@@ -35,6 +11,15 @@ static	void	tmp_sort(int **arr, t_list *stack, int size)
 		i++;
 		stack = stack->next;
 	}
+}
+
+static	void	tmp_sort(int **arr, t_list *stack, int size)
+{
+	int		i;
+	bool	sorted;
+	int		tmp;
+
+	copy_to_array(arr, stack, size);
 	sorted = false;
 	while (!sorted)
 	{
@@ -71,10 +56,10 @@ float	get_median(t_list *stack, int size)
 
 int	get_highest(t_list *stack)
 {
-	int max;
+	int	max;
 
 	max = INT_MIN;
-	while(stack)
+	while (stack)
 	{
 		if (*(int *)stack->content > max)
 			max = *(int *)stack->content;
@@ -85,10 +70,10 @@ int	get_highest(t_list *stack)
 
 int	get_smallest(t_list *stack)
 {
-	int min;
+	int	min;
 
 	min = INT_MAX;
-	while(stack)
+	while (stack)
 	{
 		if (*(int *)stack->content < min)
 			min = *(int *)stack->content;

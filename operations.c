@@ -1,19 +1,19 @@
 #include "push_swap.h"
 
-void    swap_stack(t_list **stack, char *msg)
+void	swap_stack(t_list **stack, char *msg)
 {
-    int tmp;
+	int	tmp;
 
-    tmp = *(int *)(*stack)->content;
-    *(int *)(*stack)->content = *(int *)(*stack)->next->content;
-    *(int *)(*stack)->next->content = tmp;
+	tmp = *(int *)(*stack)->content;
+	*(int *)(*stack)->content = *(int *)(*stack)->next->content;
+	*(int *)(*stack)->next->content = tmp;
 	if (msg)
 		printf("%s\n", msg);
 }
 
 void	push_stack(t_list **stack_rem, t_list **stack_add, char *msg)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	if (!(*stack_rem || !stack_add))
 		return ;
@@ -27,16 +27,15 @@ void	push_stack(t_list **stack_rem, t_list **stack_add, char *msg)
 
 void	rotate_stack(t_list **stack, char *msg)
 {
-	t_list *node_to_rotate;
+	t_list	*node_to_rotate;
 
 	node_to_rotate = *stack;
 	*stack = (*stack)->next;
 	node_to_rotate->next = NULL;
 	ft_lstadd_back(stack, node_to_rotate);
 	if (msg)
-		printf("%s\n",msg);
+		printf("%s\n", msg);
 }
-
 
 void	rrotate_stack(t_list **stack, char *msg)
 {
@@ -50,5 +49,5 @@ void	rrotate_stack(t_list **stack, char *msg)
 	ft_lstadd_front(stack, node_to_rotate);
 	new_last_node->next = NULL;
 	if (msg)
-		printf("%s\n",msg);
+		printf("%s\n", msg);
 }
