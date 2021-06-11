@@ -1,28 +1,5 @@
 #include "push_swap.h"
-/*
-static	void	print_stacks(t_list *stack_a, t_list *stack_b)
-{
-	if (stack_a)
-	{
-		printf("Stack A values:\n");
-		while (stack_a)
-		{
-			printf("%d\n", *(int*)stack_a->content);
-			stack_a = stack_a->next;
-		}
-	}
 
-	if (stack_b)
-	{
-		printf("Stack B values:\n");
-		while (stack_b)
-		{
-			printf("%d\n", *(int*)stack_b->content);
-			stack_b = stack_b->next;
-		}
-	}
-}
-*/
 static	void	exit_all(t_list **stack_a, t_list **stack_b, bool err)
 {
 	if (stack_a)
