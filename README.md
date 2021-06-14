@@ -8,7 +8,7 @@ All code is written in accordance to the norminette version running at the time 
 
 ## How to use
 
-In order to run this project you will have to compile it using make and then run the executable with a list of X, non duplicate numbers and not larger than an integer
+In order to run this project you will have to compile it using make and then run the executable with a list of X, non duplicate numbers and not larger than an integer.
 
 ```
 make
