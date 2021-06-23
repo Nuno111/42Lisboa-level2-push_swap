@@ -4,15 +4,15 @@ void	handle_chunks(t_list **stack_a, t_list **stack_b, int size)
 {
 	if (size == 1)
 	{
-		push_stack(stack_b, stack_a, "pa");
+		push_stack(stack_b, stack_a, "pa\n");
 		return ;
 	}
 	else if (size == 2)
 	{
 		if (stack_sorted(*stack_b, size))
-			swap_stack(stack_b, "sb");
-		push_stack(stack_b, stack_a, "pa");
-		push_stack(stack_b, stack_a, "pa");
+			swap_stack(stack_b, "sb\n");
+		push_stack(stack_b, stack_a, "pa\n");
+		push_stack(stack_b, stack_a, "pa\n");
 		return ;
 	}
 	push_to_a(stack_b, stack_a, size);
@@ -34,18 +34,18 @@ void	push_to_a(t_list **stack_b, t_list **stack_a, int size)
 	{
 		if (*(int *)(*stack_b)->content > median)
 		{
-			push_stack(stack_b, stack_a, "pa");
+			push_stack(stack_b, stack_a, "pa\n");
 			size--;
 		}
 		else
 		{
-			rotate_stack(stack_b, "rb");
+			rotate_stack(stack_b, "rb\n");
 			ra_count++;
 		}
 	}
 	while (ra_count > 0)
 	{
-		rrotate_stack(stack_b, "rrb");
+		rrotate_stack(stack_b, "rrb\n");
 		ra_count--;
 	}
 }
@@ -62,18 +62,18 @@ void	push_to_b(t_list **stack_a, t_list **stack_b, int size)
 	{
 		if (*(int *)(*stack_a)->content < median)
 		{
-			push_stack(stack_a, stack_b, "pb");
+			push_stack(stack_a, stack_b, "pb\n");
 			size--;
 		}
 		else
 		{
-			rotate_stack(stack_a, "ra");
+			rotate_stack(stack_a, "ra\n");
 			ra_count++;
 		}
 	}
 	while (ra_count > 0)
 	{
-		rrotate_stack(stack_a, "rra");
+		rrotate_stack(stack_a, "rra\n");
 		ra_count--;
 	}
 }
@@ -83,7 +83,7 @@ void	split_a(t_list **stack_a, t_list **stack_b, int **chunks, int size)
 	if (size == 2)
 	{
 		if (*(int *)(*stack_a)->content > *(int *)(*stack_a)->next->content)
-			swap_stack(stack_a, "sa");
+			swap_stack(stack_a, "sa\n");
 		return ;
 	}
 	else if (size == 1)

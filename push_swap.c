@@ -7,7 +7,7 @@ static	void	exit_all(t_list **stack_a, t_list **stack_b, bool err)
 	if (stack_b)
 		ft_lstclear(stack_b, free);
 	if (err)
-		printf("Error\n");
+		ft_putstr("Error\n");
 	exit (0);
 }
 
