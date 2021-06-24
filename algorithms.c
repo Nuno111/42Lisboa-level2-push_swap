@@ -12,6 +12,8 @@ void	solve_small(t_list **stack)
 	max = get_highest(*stack);
 	while (!stack_sorted(*stack, ft_lstsize(*stack)))
 	{
+
+
 		if (max == *(int *)(*stack)->next->next->content)
 			swap_stack(stack, "sa\n");
 		else if (max == *(int *)(*stack)->content)
